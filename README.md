@@ -1,3 +1,3 @@
 # packages
 
-Arch User Repository packages [I create or maintain](https://aur.archlinux.org/packages/?SeB=m&K=zhangkaizhao).
+Arch User Repository packages I [maintain](https://aur.archlinux.org/packages/?SeB=m&K=zhangkaizhao).
