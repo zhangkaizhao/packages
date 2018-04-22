@@ -1,0 +1,28 @@
+# Maintainer: Kaizhao Zhang <zhangkaizhao@gmail.com>
+
+_pkgname=budgie-mailnag-applet
+pkgname=$_pkgname-git
+pkgver=0.1.0.90824cd
+pkgrel=1
+pkgdesc="Mailnag applet for Budgie Desktop"
+url='https://github.com/ilgarmehmetali/budgie-mailnag-applet'
+arch=('i686' 'x86_64')
+license=('GPL2')
+depends=('budgie-desktop' 'json-glib' 'mailnag' 'libpeas')
+makedepends=('gobject-introspection' 'meson' 'ninja' 'vala')
+
+source=("${pkgname}::git+${url}")
+sha512sums=(SKIP)
+
+build() {
+  cd "$srcdir/${pkgname}"
+  mkdir -p build
+  cd "${srcdir}/${pkgname}/build"
+  meson --prefix /usr --buildtype=plain ..
+  ninja
+}
+
+package() {
+  cd "${srcdir}/${pkgname}/build"
+  DESTDIR="${pkgdir}" ninja install
+}
