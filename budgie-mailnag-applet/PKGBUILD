@@ -1,8 +1,7 @@
 # Maintainer: Kaizhao Zhang <zhangkaizhao@gmail.com>
 
-_pkgname=budgie-mailnag-applet
-pkgname=$_pkgname-git
-pkgver=0.1.0.90824cd
+pkgname=budgie-mailnag-applet
+pkgver=0.1.0+1+90824cd
 pkgrel=1
 pkgdesc="Mailnag applet for Budgie Desktop"
 url='https://github.com/ilgarmehmetali/budgie-mailnag-applet'
@@ -11,7 +10,8 @@ license=('GPL2')
 depends=('budgie-desktop' 'json-glib' 'mailnag' 'libpeas')
 makedepends=('gobject-introspection' 'meson' 'ninja' 'vala')
 
-source=("${pkgname}::git+${url}")
+_commit="90824cd4025c624c2fba0e7b20fc98c6de3bcc75"
+source=("${pkgname}::git+${url}.git#commit=${_commit}")
 sha512sums=(SKIP)
 
 build() {
