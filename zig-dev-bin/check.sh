@@ -19,8 +19,8 @@ echo "Fetching latest JSON version..."
 _json_version=$(curl https://ziglang.org/download/index.json)
 #_json_version=$(cat index.json)
 
-_latest_builddate=$(echo ${_json_version} | jq '.["master"]["date"]' | xargs)
-_latest_buildver=$(echo ${_json_version} | jq '.["master"]["version"]' | xargs)
+_latest_builddate=$(echo ${_json_version} | jq -r '.["master"]["date"]')
+_latest_buildver=$(echo ${_json_version} | jq -r '.["master"]["version"]')
 
 echo "Parsed latest build:"
 echo " date: ${_latest_builddate}"
@@ -33,9 +33,9 @@ if [[ ${_latest_buildver} == ${_current_buildver} ]]; then
     echo "No new build yet."
 else
     if [[ ! (${_new_builddate} -lt ${_builddate}) ]]; then
-        _latest_tarball=$(echo ${_json_version} | jq '.["master"]["x86_64-linux"]["tarball"]' | xargs)
-        _latest_sha256=$(echo ${_json_version} | jq '.["master"]["x86_64-linux"]["shasum"]' | xargs)
-        _latest_size=$(echo ${_json_version} | jq '.["master"]["x86_64-linux"]["size"]' | xargs)
+        _latest_tarball=$(echo ${_json_version} | jq -r '.["master"]["x86_64-linux"]["tarball"]')
+        _latest_sha256=$(echo ${_json_version} | jq -r '.["master"]["x86_64-linux"]["shasum"]')
+        _latest_size=$(echo ${_json_version} | jq -r '.["master"]["x86_64-linux"]["size"]')
         echo "New build:"
         echo " date: ${_latest_builddate}"
         echo " version: ${_latest_buildver}"
